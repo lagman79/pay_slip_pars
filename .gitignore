@@ -1,21 +1,29 @@
-# --- Security: Ignore Settings & API Keys ---
-settings_payments.json
+# --- ΑΡΧΕΙΑ ΑΣΦΑΛΕΙΑΣ (ΜΗΝ ΤΑ ΑΝΕΒΑΣΕΙΣ ΠΟΤΕ) ---
+api.txt
+settings_payment_slip.json
 settings.json
 *.env
 
-# --- Python: Ignore Cache & Virtual Envs ---
-__pycache__/
-*.py[cod]
-*$py.class
-venv/
-env/
-.venv/
+# --- ΠΡΟΣΩΠΙΚΑ ΔΕΔΟΜΕΝΑ & INPUTS ---
+# Αγνοούμε τον φάκελο input που έχεις τα PDF/Εικόνες
+input/
+# Αγνοούμε τυχόν άλλα PDF ή εικόνες που είναι χύμα
+*.pdf
+*.PDF
+*.jpg
+*.jpeg
+*.png
 
-# --- Output: Ignore Excel Files (Privacy) ---
+# --- ΑΠΟΤΕΛΕΣΜΑΤΑ (EXCEL) ---
+# Αγνοούμε τα αρχεία Excel για να μη διαρρεύσουν οικονομικά στοιχεία
 *.xlsx
 *.xls
 *.csv
 
-# --- OS: Ignore System Files ---
+# --- PYTHON & SYSTEM TRASH ---
+__pycache__/
+*.py[cod]
+venv/
+.venv/
 .DS_Store
 Thumbs.db
