@@ -1,68 +1,156 @@
-# Bank Payment Extractor Pro 🏦🤖
+# 🧾 AI Payment Slip Parser
 
-**Bank Payment Extractor Pro** is a Python desktop application that leverages **Google Gemini AI (2.0 Flash)** to automatically extract, analyze, and organize data from bank payment slips (PDFs and Images) into structured Excel reports.
+AI-powered application for extracting structured data from bank payment
+slips and exporting them into a clean Excel file.
 
-It is designed to handle various Greek bank formats (Alpha Bank, Eurobank, Piraeus, NBG, etc.), perform validation checks, and streamline accounting workflows.
+------------------------------------------------------------------------
 
-## 🚀 Features
+# 📑 Table of Contents
 
-* **Multi-Format Support**: Processes both **PDF** documents and **Image** files (JPG, PNG).
-* **AI-Powered Extraction**: Uses Google's **Gemini 2.0 Flash** model to intelligently identify fields like Transaction IDs, Amounts, Dates, and Beneficiaries.
-* **Smart IBAN Handling**:
-    * Automatic detection and cleaning of IBANs (removes spaces/dashes, truncates to standard length).
-    * **Bank Identification**: Automatically detects the bank name based on the IBAN digits.
-    * **Same-Bank Check**: validaters if the transaction is internal (between the same bank).
-* **Cross-Check Logic**: Verifies the Debit Bank against the sender's IBAN for accuracy.
-* **Excel Export**: Generates a formatted Excel file (`.xlsx`) with a specific column order tailored for accounting needs.
-* **User-Friendly GUI**: Built with `tkinter`, featuring:
-    * File selection dialogs.
-    * Live progress bar and logging.
-    * "New Job" and "Exit" controls.
-    * Secure API Key input (saved locally).
+1.  Introduction
+2.  Key Features
+3.  System Requirements
+4.  Installation
+5.  User Guide
+    -   1.  Main Interface
 
-## 🛠️ Installation
+    -   2.  API Key Setup
 
-1.  **Clone the repository**:
-    ```bash
-    git clone [https://github.com/YOUR_USERNAME/bank-payment-extractor.git](https://github.com/YOUR_USERNAME/bank-payment-extractor.git)
-    cd bank-payment-extractor
-    ```
+    -   3.  Select Source Folder
 
-2.  **Install dependencies**:
-    ```bash
+    -   4.  Settings
+
+    -   5.  Progress & Logs
+
+    -   6.  Start / New / Exit Buttons
+6.  Output File Structure
+7.  Troubleshooting
+8.  Notes
+
+------------------------------------------------------------------------
+
+# Introduction
+
+AI Payment Slip Parser is a graphical Python application that reads bank
+payment documents (PDFs or images), extracts structured fields using AI,
+and saves all results into an Excel spreadsheet.
+
+The application is designed for users who frequently categorize, record,
+or analyze payment slips and want a fast, automated workflow.
+
+------------------------------------------------------------------------
+
+# Key Features
+
+-   AI-powered extraction of payment slip fields\
+-   Clean and intuitive GUI\
+-   Batch processing of multiple files\
+-   Dynamic extraction mode for capturing additional non-standard
+    fields\
+-   Live progress bar and event logs\
+-   Configurable output folder\
+-   Requires only a valid Gemini API key
+
+------------------------------------------------------------------------
+
+# System Requirements
+
+-   Windows 10 or 11\
+-   Python 3.10 or newer\
+-   Dependencies from `requirements.txt`
+
+------------------------------------------------------------------------
+
+# Installation
+
+1.  Install Python (3.10+).\
+2.  Install dependencies:
+
+```{=html}
+<!-- -->
+```
     pip install -r requirements.txt
-    ```
 
-3.  **Run the application**:
-    ```bash
-    python payment_slip_extractor.py
-    ```
+3.  Obtain a valid Google Gemini API key.\
+4.  Place your API key inside **api.txt** in the project root folder.
 
-## 📋 Requirements
+------------------------------------------------------------------------
 
-* Python 3.x
-* A **Google Gemini API Key** (Get one at [Google AI Studio](https://aistudio.google.com/))
+# User Guide
 
-## 📦 Dependencies
+## 1. Main Interface
 
-* `google-generativeai`
-* `pandas`
-* `openpyxl`
-* `tk` (Standard Python library)
+![Main GUI](screenshots/1_gui.png)
 
-## 🔒 Security Note
+## 2. API Key Setup
 
-This application stores your API Key locally in a `settings_payments.json` file. **This file is automatically added to `.gitignore` to prevent it from being uploaded to GitHub.** Never share your API keys publicly.
+Insert your Gemini API key into `api.txt`.
 
-## 📝 Usage
+![API Setup](screenshots/2_api.png)
 
-1.  Paste your **Gemini API Key**.
-2.  Select the **Input Folder** containing your PDFs or Images.
-3.  (Optional) Select a specific **Output Excel File** path.
-4.  Check **"Full Extract"** if you want to capture dynamic fields (notes, timestamps, etc.).
-5.  Click **"Start Extraction"** (🚀 ΕΚΚΙΝΗΣΗ ΕΞΑΓΩΓΗΣ).
-6.  Once finished, use **"New Job"** (🧹 ΝΕΑ ΕΡΓΑΣΙΑ) to clear the form or **"Exit"** (🚪 ΕΞΟΔΟΣ) to close.
+## 3. Select Source Folder
 
-## 📄 License
+Choose the folder containing the payment slips you want to process.
 
-This project is open-source. Feel free to modify and use it for your own workflows.
+![Source Folder](screenshots/3_source_folder.png)
+
+## 4. Settings
+
+Configure extraction mode and output location.
+
+![Settings](screenshots/4_settings.png)
+
+## 5. Progress & Logs
+
+Monitor progress and status messages.
+
+![Progress & Logs](screenshots/5_progress_logs.png)
+
+## 6. Start / New / Exit Buttons
+
+Start processing, reset, or close the application.
+
+![Start, New, Exit](screenshots/6_start_new_exit.png)
+
+------------------------------------------------------------------------
+
+# Output File Structure
+
+The final Excel file contains the following fields:
+
+-   `charging_bank`\
+-   `transaction_id`\
+-   `transaction_date`\
+-   `amount`\
+-   `fees`\
+-   `iban_from`\
+-   `iban_to`\
+-   `credit_bank`\
+-   `account_holder_same_bank`\
+-   `file_name`\
+-   `bank_name_header`
+
+All data is saved in the output folder selected by the user.
+
+------------------------------------------------------------------------
+
+# Troubleshooting
+
+### "API key not found"
+
+Verify that `api.txt` exists and contains a valid API key.
+
+### "No files found"
+
+Ensure the selected source folder contains supported file types.
+
+### Extraction errors
+
+Check the log panel for detailed error messages.
+
+------------------------------------------------------------------------
+
+# Notes
+
+-   The API key stays locally on your machine and is ignored by Git.\
+-   Only text content is transmitted to the AI model.
